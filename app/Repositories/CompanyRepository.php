@@ -38,20 +38,6 @@ class CompanyRepository extends BaseRepository
                     });
                 });
             })
-            ->when(\request("filter"), function ($query) {
-                switch (\request("filter")) {
-                    case "today":
-                        return $query->whereDate("created_at", \today());
-                    case "yesterday":
-                        return $query->whereDate("created_at", Carbon::yesterday() );
-                    case "month":
-                        return $query->whereMonth("created_at", \now()->month);
-                    case "year":
-                        return $query->whereYear("created_at", \now()->year);
-                    default:
-                        return null;
-                }
-            })
             ->latest()
             ->when(\request("page"), function ($query){
                 return $query->fastPaginate(\request("to"));
@@ -67,7 +53,7 @@ class CompanyRepository extends BaseRepository
     public function saveRepository(array $attributes): ?Model
     {
         return $this->save([
-            "key" => $attributes["key"]
+            "name" => $attributes["name"]
         ],$attributes);
     }
 

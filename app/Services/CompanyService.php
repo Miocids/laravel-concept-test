@@ -18,7 +18,7 @@ class CompanyService extends CompanyRepository
     {
         DB::beginTransaction();
         try {
-            $payload = [];
+            $payload = \request()->toArray();
             $response = $this->saveRepository($payload);
 
             DB::commit();
@@ -45,7 +45,7 @@ class CompanyService extends CompanyRepository
     {
         DB::beginTransaction();
         try {
-            $payload = [];
+            $payload = \request()->toArray();
              $response = $this->updateRepository(
                 $payload,
                 $id

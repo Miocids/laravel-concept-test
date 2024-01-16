@@ -20,7 +20,13 @@
                     <td>{{ $user?->last_name }}</td>
                     <td>
                         <a href="{{ route('users.edit',['id' => $user?->getKey()]) }}" class="btn btn-primary">Editar</a>
-                        <a href="{{ route('users.destroy',['id' => $user?->getKey()]) }}" class="btn btn-danger">Eliminar</a>
+                        <form action="{{ route('users.destroy',['id' => $user?->getKey()]) }}" method ="POST" >
+                            @csrf
+                            {{ method_field('DELETE') }}
+                            <input type="submit" class="btn btn-danger"
+                                   value="Borrar"
+                            >
+                        </form>
                     </td>
                 </tr>
             @endforeach

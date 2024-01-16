@@ -30,7 +30,7 @@ class CompanyController extends Controller
      */
     public function index(): Factory|View|Application|CompanyCollection
     {
-        $response = $this->companyService->getAllQuery();
+        $response = $this->companyService->getAllRepository();
             if (\request()->ajax())
                 return new CompanyCollection($response);
 
